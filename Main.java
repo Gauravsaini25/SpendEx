@@ -67,7 +67,7 @@ public class Main {
 
         // It returns 0 if both objects are equal 
         // It returns 1 if this object is greater 
-        // Yaha humne compareTo method ko override kiya hai 
+        // We have overriden the compareTo method here 
 
         @Override
         public int compareTo(Expense other) {
@@ -83,7 +83,6 @@ public class Main {
         public static Expense fromTextFormat(String textLine) {
             String[] parts = textLine.split("\\|");
             // we split the line based on pipe character and create an array of parts 
-
             // as the element at first index will be our value we trim it out 
 
             String description = parts[0].split(":")[1].trim();
@@ -112,14 +111,14 @@ public class Main {
             savingsTarget = 0.0;
         }
 
-        // The most important method of our program creates an Expense object and adds it to the List of our expenses 
+        // This method creates an Expense object and adds it to the List of our expenses 
         public void addExpense(String description, double amount, String category) { 
             Expense expense = new Expense(description, amount, category);
             expenses.add(expense);
             System.out.println("Expense added successfully!");
         }
 
-        // It is used to maintain the readablility of the data by constructing a table form
+        // This method is used to maintain the readablility of the data by constructing a table form
 
         public void printTableHeader() {
             System.out.println("|---------------------|------------|--------------|-----------------|");
@@ -189,8 +188,6 @@ public class Main {
                     })
                     .collect(Collectors.toList()); 
                     
-                    // kis cheez ko collect karna hai ye collect mei daalte hai 
-                    // and Collectors converts stream to list
 
             if (filtered.isEmpty()) {
                 System.out.println("No expenses found between " + startDate + " and " + endDate);
@@ -230,27 +227,6 @@ public class Main {
 
         // Which incorpoates concepts of error handling and file handling in java 
         // We made use of the buffered writer class to write to the file because it is more efficient 
-
-        // If we would have used the simple File Writer it would have written the parts character by character
-        // But the Buffered Writer first stores the content in temporary memory 
-
-        // Then it gets written to the file when the temporary memory is full
-        // Minimal overhead and better performance 
-
-        // BufferedWriter itself doesnt know how to interact with the file it is majorly responsible for the performance 
-        // So we need to pass a file writer object in it 
-        // While performing these operations we may encounter certain exceptions 
-
-        // Which are IO exceptions such as FileNotFound exception,
-        // Access Denied Exception 
-        // OutofMemoryError happens while handling large amount of data 
-
-        // Automatically closes the file when we are done working on it we do not need to call
-        // writer.close()
-
-        // File Output Stream is used for writing binary data 
-        // Rather than manually converting text to byes we use BufferedWriter that handles 
-        // text based writing
         public void saveExpensesToFile(String filename) {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
                 for (Expense expense : expenses) {
@@ -263,16 +239,6 @@ public class Main {
             }
         }
         
-
-        // Suppose the user wants to know which file stores which expense 
-        // It can do so by loading the file and using the function loadExpenseFromFile
-
-        // BufferedReader reads lines and as usual it takes a larger chunk of memory at once 
-        // and then processes it 
-        // As we store the details of an expense in a single line 
-        // We consider reading line by line and calling a function called 
-        // .fromTextFormat which will convert string to an expense object 
-
         public void loadExpensesFromFile(String filename) {
             try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
                 String line;
@@ -368,27 +334,3 @@ public class Main {
         scanner.close();
     }
 }
-
-// In order to save Expenses and load Expenses in a file hum saveExpenses and loadExpenses methods use kar rahe hai
-// Ismei humne error handling and file handling ke techniques use kiye hau 
-
-// beginning with saveExpenses : 
-// FileWriter class ka object banaya which is responsible for opening or creating the file with filename 
-// This object will write raw data to the file 
-
-// We use BufferedWriter to wrap around the FileWriter object to improve efficiency 
-// and reduce overhead. So what BufferedWriter does is instead if writing character by character 
-// It collects characters in buffers and writes the content to the file only when 
-// the buffer is full or the process is complete 
-// Another advantage is that close() gets automatically called when these operations are done
-
-// writer.newLine ensures that the next expense begins from a new line 
-
-// While performing such operations we may encounter many exceptions like IO, FileNotFound, 
-// RestrictedAccess to File or OutofBound memory error
-
-// Similarly for reading we create a FileReader object which performs reading of raw data from file 
-// And BufferedReader wraps around this FileReader Object 
-
-// It uses a memory area to store data that is read from file and when buffer is full 
-// it writes buffered data into program memory 
