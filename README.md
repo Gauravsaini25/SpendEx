@@ -29,14 +29,14 @@ Below is the flowchart representing the functionality of SpendEx:
 Ensure that you have Java installed on your system.
 
 ### Compilation
-```sh
+sh
 javac Main.java
-```
+
 
 ### Execution
-```sh
+sh
 java Main
-```
+
 
 ## Usage
 1. Run the program and choose an option from the menu.
@@ -47,7 +47,7 @@ java Main
 6. Exit the program when done.
 
 ## Example
-```
+
 Finance Tracker Menu:
 1. Add Expense
 2. View All Expenses
@@ -64,13 +64,13 @@ Enter expense description: Coffee
 Enter expense amount: 5.50
 Enter expense category: Food
 Expense added successfully!
-```
+
 
 ## File Format for Saving and Loading
 Expenses are saved in the following text format:
-```
+
 description : Coffee      |      amount : 5.50      |      date : 2025-04-04      |      category : Food
-```
+
 Each expense is stored in a structured manner and can be reloaded into the program.
 
 ## Potential Enhancements
