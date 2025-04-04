@@ -22,7 +22,8 @@ SpendEx is a simple Java-based Finance Tracker that allows users to manage their
 ## Flowchart
 Below is the flowchart representing the functionality of SpendEx:
 
-![SpendEx Flowchart](file-NJ8NPL83ko7tg1LYZB6wZ1)
+![SpendEx Flowchart](images/spendex.png)
+
 
 ## How to Run
 ### Prerequisites
